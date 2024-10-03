@@ -7,8 +7,12 @@ import 'package:panara_dialogs/src/widgets/panara_button.dart';
 /// PanaraConfirmDialogWidget, you can use it separatly if you want.
 ///
 class PanaraConfirmDialogWidget extends StatelessWidget {
+  final double? imageHeight;
+  final double? imageWidth;
   final String? title;
+  final TextStyle? style;
   final String message;
+  final TextStyle? messageStyle;
   final String? imagePath;
   final String confirmButtonText;
   final String cancelButtonText;
@@ -29,7 +33,11 @@ class PanaraConfirmDialogWidget extends StatelessWidget {
 
   const PanaraConfirmDialogWidget({
     Key? key,
+    this.imageHeight,
+    this.imageWidth,
     this.title,
+    this.style,
+    this.messageStyle,
     required this.message,
     required this.confirmButtonText,
     required this.cancelButtonText,
@@ -74,8 +82,8 @@ class PanaraConfirmDialogWidget extends StatelessWidget {
                 Image.asset(
                   imagePath ?? 'assets/confirm.png',
                   package: imagePath != null ? null : 'panara_dialogs',
-                  width: 84,
-                  height: 84,
+                  width: imageWidth ?? 84,
+                  height: imageHeight ?? 84,
                   color: imagePath != null
                       ? null
                       : (panaraDialogType == PanaraDialogType.normal
@@ -95,12 +103,13 @@ class PanaraConfirmDialogWidget extends StatelessWidget {
               if (title != null)
                 Text(
                   title ?? "",
-                  style: TextStyle(
-                    fontSize: 24,
-                    height: 1.2,
-                    fontWeight: FontWeight.w600,
-                    color: textColor,
-                  ),
+                  style: style ??
+                      TextStyle(
+                        fontSize: 24,
+                        height: 1.2,
+                        fontWeight: FontWeight.w600,
+                        color: textColor,
+                      ),
                   textAlign: TextAlign.center,
                 ),
               if (title != null)
@@ -109,12 +118,13 @@ class PanaraConfirmDialogWidget extends StatelessWidget {
                 ),
               Text(
                 message,
-                style: TextStyle(
-                  color: textColor,
-                  height: 1.5,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w400,
-                ),
+                style: messageStyle ??
+                    TextStyle(
+                      color: textColor,
+                      height: 1.5,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400,
+                    ),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(
