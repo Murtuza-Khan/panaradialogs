@@ -9,6 +9,9 @@ import 'package:panara_dialogs/src/widgets/panara_button.dart';
 class PanaraConfirmDialogWidget extends StatelessWidget {
   final double? imageHeight;
   final double? imageWidth;
+  final double? dialogHeight;
+  final double? dialogWidth;
+  final double? sacle;
   final String? title;
   final TextStyle? style;
   final String message;
@@ -33,6 +36,9 @@ class PanaraConfirmDialogWidget extends StatelessWidget {
 
   const PanaraConfirmDialogWidget({
     Key? key,
+    this.sacle,
+    this.dialogHeight,
+    this.dialogWidth,
     this.imageHeight,
     this.imageWidth,
     this.title,
@@ -64,8 +70,9 @@ class PanaraConfirmDialogWidget extends StatelessWidget {
       child: Material(
         color: Colors.transparent,
         child: Container(
-          constraints: const BoxConstraints(
-            maxWidth: 340,
+          constraints: BoxConstraints(
+            maxWidth: dialogHeight ?? 340,
+            minHeight: dialogWidth ?? 0.0,
           ),
           margin: margin ?? const EdgeInsets.all(24),
           padding: padding ?? const EdgeInsets.all(24),
@@ -81,6 +88,7 @@ class PanaraConfirmDialogWidget extends StatelessWidget {
               if (!noImage)
                 Image.asset(
                   imagePath ?? 'assets/confirm.png',
+                  scale: sacle ?? 1.0,
                   package: imagePath != null ? null : 'panara_dialogs',
                   width: imageWidth ?? 84,
                   height: imageHeight ?? 84,
